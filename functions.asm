@@ -25,25 +25,26 @@ compute_acceleration:
     ;Initial Velocity (Vi) in KM/H, Final Velocity (Vf) in KM/H, Time (t) in seconds
     ;Outputs: Acceleration (a) in m/s^2 as integer
 
-    ;rdi = float* input (Vi, Vf, t, Vi, Vf, t, ...continued)
-    ;rsi = int* output (a, a, a, ...continued)
-    ;rdx = number of cars (sets of Vi, Vf, t)
+    ;Parameters:
+    ;rcx = float* input (Vi, Vf, t, Vi, Vf, t, ...continued)
+    ;rdx = int* output (a, a, a, ...continued)
+    ;r8 = int n number of cars (sets of Vi, Vf, t)
 
     push rbp
     mov rbp, rsp
-    push rbx
     push r12
     push r13
+    push r14
 
-    mov r12, rdi
-    mov r13, rsi
-    mov rcx, rdx ;counter for number of cars
+    mov r12, rcx
+    mov r13, rdx
+    mov r14, r8 ;counter for number of cars
 
     movss xmm0, [rel convert] ;load conversion into xmm0
 
     .loop_all_cars:
-        cmp rcx, 0
-        je .end_all_cars
+        cmp r14, 0
+        je .end_program
 
         ;Load Vi, Vf, t for current car
         movss xmm1, [r12 + 0] ;Vi
@@ -69,12 +70,12 @@ compute_acceleration:
         add r12, 12          ;move to next set of (Vi, Vf, t)
         add r13, 4           ;move to next output position
 
-        dec rcx
-        jmp .loop_all_cars
+        dec r14
+        jnz .loop_all_cars
 
-.end_all_cars:
+.end_program:
+    pop r14
     pop r13
     pop r12
-    pop rbx
     pop rbp
     ret
