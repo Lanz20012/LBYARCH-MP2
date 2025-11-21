@@ -12,7 +12,6 @@
 ;2. Calculate acceleration: a = (17.36-0.0) / 10.1 = 1.7188 m/s^2
 ;3. Convert to int (1.7188 m/s^2) =  2 m/s^2
 
-global compute_acceleration
 
 ;Using the formula (1000/3600) to convert KM/H to M/S
 ;We get the constant value of 0.2777777777777778
@@ -20,6 +19,7 @@ section .data
     convert: dd 0.2777777777777778 ;as float
 
 section .text
+global compute_acceleration
 compute_acceleration:
     ;Inputs: each row indicates the paramter of a car in matrix
     ;Initial Velocity (Vi) in KM/H, Final Velocity (Vf) in KM/H, Time (t) in seconds
