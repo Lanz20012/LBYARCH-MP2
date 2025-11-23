@@ -1,5 +1,5 @@
 # LBYARCH-MP2 The Acceleration Calculator
-by Group 4: Lanz Wynel Choi and Yosh Gabriel Cruzat
+by Group 4: Lanz Wynel Choi and Yosh Gabriel Chua
 
 ## Overview
 This project implements a program that computes the acceleration of multiple cars based on their initial velocity, final velocity, and time taken to travel 1 km. The solution is split between C for input/output and memory management, and Assembly for computation using scalar SIMD registers and floating-point instructions
@@ -25,4 +25,13 @@ The task is to convert the velocities from km/h to m/s before computing the acce
 
 ## Performance Testing
 Running the assembly function with input sizes: 10, 100, 1000, 10000
-The Results of the tests are listed below:
+
+The results of the tests are listed below:
+
+| Input Sizes (Y) | Average Execution Time (in microseconds) | Correctness (PASS OR FAIL) |
+|----------|----------|----------|
+| 1. 10   |    |   |
+| 2. 100    |    |   |
+| 3. 1000    |    |   |
+| 4. 10000    |    |   |
+
