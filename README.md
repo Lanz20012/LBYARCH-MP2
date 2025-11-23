@@ -7,7 +7,7 @@ This project implements a program that computes the acceleration of multiple car
 ## Description
 Acceleration is calculated using the formula:
 
-<img src="image.png" alt="Acceleration Formula" width="200"/>
+<img width="270" height="241" alt="image" src="https://github.com/user-attachments/assets/56ead99a-461d-45aa-b079-dc44c3f0e063" />
 
 1. Vf = final velocity (km/h)
 2. Vi = initial velocity (km/h)
