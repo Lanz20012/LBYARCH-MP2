@@ -1,6 +1,7 @@
-#include <stdio.h>
+﻿#include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <time.h>
 
 extern void compute_acceleration(float* input, int* output, int n);
 
@@ -26,6 +27,14 @@ static void reference_compute_acceleration(float* input, int* output, int n) {
     }
 }
 
+// getting time for execution time
+double get_time_ms() {
+    struct timespec ts;
+    clock_gettime(CLOCK_MONOTONIC, &ts);
+    return ts.tv_sec * 1000.0 + ts.tv_nsec / 1e6;
+}
+
+
 int main() {
     int Y;
 
@@ -45,7 +54,7 @@ int main() {
     do {
         valid = 1;
 
-        printf("Enter %d rows (Vi, Vf, T in KM/H, KM/H, seconds):\n", Y);
+        printf("Enter %d rows (Initian Velocity (km/h), Final Velocity (km/h), Time (seconds):\n", Y);
         for (int i = 0; i < Y; i++) {
             float vi, vf, t;
 
@@ -68,8 +77,13 @@ int main() {
 
     } while (!valid);
 
-    // Computing the outputs
+    // Computing the outputs & getting execution time
+    double t_start = get_time_ms();
     compute_acceleration(input, output, Y);
+    double t_end = get_time_ms();
+
+    double elapsed_time = t_end - t_start;
+
     reference_compute_acceleration(input, ref_output, Y);
 
     // Display results with correctness check
@@ -84,15 +98,17 @@ int main() {
         float a = (vf_ms - vi_ms) / t;
 
         printf("\nCar %d:\n", i + 1);
-        printf("  Input: Vi=%.2f km/h, Vf=%.2f km/h, T=%.2f s\n", vi, vf, t);
-        printf("  Converted: Vi=%.2f m/s, Vf=%.2f m/s\n", vi_ms, vf_ms);
-        printf("  Acceleration = (Vf - Vi)/T = (%.2f - %.2f)/%.2f = %.4f m/s^2\n",
+        printf("\tInput: Vi=%.2f km/h, Vf=%.2f km/h, T=%.2f s\n", vi, vf, t);
+        printf("\tConverted: Vi=%.2f m/s, Vf=%.2f m/s\n", vi_ms, vf_ms);
+        printf("\tAcceleration = (Vf - Vi)/T = (%.2f - %.2f)/%.2f = %.4f m/s^2\n",
             vf_ms, vi_ms, t, a);
-        printf("  C Result = %d\n", ref_output[i]);
-        printf("  Assembly result = %d --> %s\n",
+        printf("\tC Result = %d\n", ref_output[i]);
+        printf("\tAssembly result = %d --> %s\n",
             output[i],
             (output[i] == ref_output[i]) ? "PASS" : "FAIL");
     }
+
+    printf("\nExecution time for Y=%d elements: %.3f ms\n", Y, elapsed_time);
 
     free(input);
     free(output);
