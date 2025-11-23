@@ -35,3 +35,7 @@ The results of the tests are listed below:
 | 3. 1000    |    |   |
 | 4. 10000    |    |   |
 
+## Program Output with Checking
+
+<img width="600" height="741" alt="image" src="https://github.com/user-attachments/assets/cc0696e6-7ac5-4a55-b645-9f18549ff8a9" />
+
