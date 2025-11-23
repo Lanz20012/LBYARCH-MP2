@@ -25,7 +25,7 @@ The task is to convert the velocities from km/h to m/s before computing the acce
 
 ## Performance Testing
 Running the assembly function with input sizes: 10, 100, 1000, 10000
-
+All the tests used randomized input values, and average execution times were computed over 30 runs.
 The results of the tests are listed below:
 
 | Input Sizes (Y) | Average Execution Time (in microseconds) | Correctness (PASS OR FAIL) |
@@ -35,8 +35,7 @@ The results of the tests are listed below:
 | 1000            | 1.110 µs                                 | PASS                       |
 | 10000           | 13.060 µs                                | PASS                       |
 
-The execution time increases as the input size increases, growing linearly as the input sizes gets larger. Small inputs run extremely fast due to low overhead, and even at Y = 10,000 the runtime is only about 13 microseconds. Overall, the program is efficient and scales predictably, with all correctness checks passing.
-
+The execution time increases as the input size increases, growing linearly as the input sizes gets larger. Small inputs run extremely fast, and even at Y = 10,000 the runtime is only about 13 microseconds. Overall, the program is efficient and scales predictably, with all correctness checks passing.
 
 ## Program Output with Checking
 
