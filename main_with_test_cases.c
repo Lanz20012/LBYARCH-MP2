@@ -98,7 +98,7 @@ int main(void) {
                Y, runs, avg_us, avg_seconds);
 
         // Print outputs to verify
-        int to_print = (Y < 30) ? Y : 30;
+        int to_print = (Y < 10) ? Y : 10;
         printf("Sample outputs (first %d):\n", to_print);
         for (int i = 0; i < to_print; ++i) {
             printf("  index %d: asm=%d  ref=%d\n", i, output[i], ref_output[i]);
