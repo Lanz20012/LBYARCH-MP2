@@ -23,7 +23,7 @@ The task is to convert the velocities from km/h to m/s before computing the acce
 
 3. main_with_test_cases.c is an additional file, created to verify the correctness of the outputs of the assembly code to outputs computed by a C program. It is also used to test the performance and execution times of the assembly. This file is made purely for testing, and for the input and output program, use main.c instead.
 
-## Performance Testing
+## Performance Testing & Analysi
 Running the assembly function with input sizes: 10, 100, 1000, 10000
 All the tests used randomized input values, and average execution times were computed over 30 runs.
 The results of the tests are listed below:
