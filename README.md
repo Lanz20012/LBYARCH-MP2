@@ -1,4 +1,4 @@
-<img width="798" height="544" alt="image" src="https://github.com/user-attachments/assets/01adfb29-4a7d-404b-b007-344e84ff6581" /># LBYARCH-MP2 The Acceleration Calculator
+# LBYARCH-MP2 The Acceleration Calculator
 by Group 4: Lanz Wynel Choi and Yosh Gabriel Chua
 
 ## Overview
