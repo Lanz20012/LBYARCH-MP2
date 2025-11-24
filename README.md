@@ -1,4 +1,4 @@
-# LBYARCH-MP2 The Acceleration Calculator
+<img width="798" height="544" alt="image" src="https://github.com/user-attachments/assets/01adfb29-4a7d-404b-b007-344e84ff6581" /># LBYARCH-MP2 The Acceleration Calculator
 by Group 4: Lanz Wynel Choi and Yosh Gabriel Chua
 
 ## Overview
@@ -38,9 +38,10 @@ The results of the tests are listed below:
 The execution time increases as the input size increases, growing linearly as the input sizes gets larger. Small inputs run extremely fast, and even at Y = 10,000 the runtime is only about 13 microseconds. Overall, the program is efficient and scales predictably, with all correctness checks passing.
 
 ## Program Output with Checking
+main.c
+<img width="798" height="544" alt="image" src="https://github.com/user-attachments/assets/6ba279e1-0628-44ed-a403-c9dcb5d9a325" />
 
-<img width="600" height="741" alt="image" src="https://github.com/user-attachments/assets/cc0696e6-7ac5-4a55-b645-9f18549ff8a9" />
-
+main_with_test_cases.c
 <img width="502" height="799" alt="image" src="https://github.com/user-attachments/assets/69f259c0-7d1e-4548-a9d6-2aaf019c6984" />
 
 
