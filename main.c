@@ -31,7 +31,7 @@ static void reference_compute_acceleration(float* input, int* output, int n) {
 double get_time_ms() {
     struct timespec ts;
     clock_gettime(CLOCK_MONOTONIC, &ts);
-    return ts.tv_sec * 1000.0 + ts.tv_nsec / 1e6;
+    return ts.tv_sec * 1e9 + ts.tv_nsec;
 }
 
 
@@ -83,6 +83,8 @@ int main() {
     double t_end = get_time_ms();
 
     double elapsed_time = t_end - t_start;
+    double elapsed_sec = elapsed_time / 1e9;     //seconds
+    double elapsed_us = elapsed_time / 1e3;      //microseconds
 
     reference_compute_acceleration(input, ref_output, Y);
 
@@ -98,17 +100,18 @@ int main() {
         float a = (vf_ms - vi_ms) / t;
 
         printf("\nCar %d:\n", i + 1);
-        printf("\tInput: Vi=%.2f km/h, Vf=%.2f km/h, T=%.2f s\n", vi, vf, t);
-        printf("\tConverted: Vi=%.2f m/s, Vf=%.2f m/s\n", vi_ms, vf_ms);
-        printf("\tAcceleration = (Vf - Vi)/T = (%.2f - %.2f)/%.2f = %.4f m/s^2\n",
-            vf_ms, vi_ms, t, a);
+        printf("\tInput: Vi = %.2f km/h, Vf = %.2f km/h, T = %.2f s\n", vi, vf, t);
+        printf("\tConverted: Vi = %.2f m/s, Vf = %.2f m/s\n", vi_ms, vf_ms);
+        printf("\tAcceleration = %.4f m/s^2\n", a);
         printf("\tC Result = %d\n", ref_output[i]);
         printf("\tAssembly result = %d --> %s\n",
             output[i],
             (output[i] == ref_output[i]) ? "PASS" : "FAIL");
     }
 
-    printf("\nExecution time for Y=%d elements: %.3f ms\n", Y, elapsed_time);
+    // Display calc time
+    printf("\nCalculation time for input size of %d elements: %.6f seconds (%.2f microseconds)\n",
+            Y, elapsed_sec, elapsed_us);
 
     free(input);
     free(output);
