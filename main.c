@@ -1,7 +1,8 @@
-﻿#include <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include <time.h>
+#include <windows.h> 
+
 
 extern void compute_acceleration(float* input, int* output, int n);
 
@@ -28,12 +29,12 @@ static void reference_compute_acceleration(float* input, int* output, int n) {
 }
 
 // getting time for execution time
-double get_time_ms() {
-    struct timespec ts;
-    clock_gettime(CLOCK_MONOTONIC, &ts);
-    return ts.tv_sec * 1e9 + ts.tv_nsec;
+double get_time_us() {
+    LARGE_INTEGER freq, counter;
+    QueryPerformanceFrequency(&freq);
+    QueryPerformanceCounter(&counter);
+    return (double)counter.QuadPart * 1e6 / (double)freq.QuadPart;
 }
-
 
 int main() {
     int Y;
@@ -78,13 +79,13 @@ int main() {
     } while (!valid);
 
     // Computing the outputs & getting execution time
-    double t_start = get_time_ms();
+    double t_start = get_time_us();
     compute_acceleration(input, output, Y);
-    double t_end = get_time_ms();
+    double t_end = get_time_us();
 
     double elapsed_time = t_end - t_start;
-    double elapsed_sec = elapsed_time / 1e9;     //seconds
-    double elapsed_us = elapsed_time / 1e3;      //microseconds
+    double elapsed_sec = elapsed_time / 1e6;     //seconds
+    double elapsed_us = elapsed_time;      //microseconds
 
     reference_compute_acceleration(input, ref_output, Y);
 
@@ -111,7 +112,7 @@ int main() {
 
     // Display calc time
     printf("\nCalculation time for input size of %d elements: %.6f seconds (%.2f microseconds)\n",
-            Y, elapsed_sec, elapsed_us);
+        Y, elapsed_sec, elapsed_us);
 
     free(input);
     free(output);
