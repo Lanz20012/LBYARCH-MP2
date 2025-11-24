@@ -1,4 +1,4 @@
-#include <stdio.h>
+﻿#include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include <windows.h> 
@@ -55,7 +55,7 @@ int main() {
     do {
         valid = 1;
 
-        printf("Enter %d rows (Initian Velocity (km/h), Final Velocity (km/h), Time (seconds):\n", Y);
+        printf("Enter %d rows (Initial Velocity (km/h), Final Velocity (km/h), Time (seconds)):\n", Y);
         for (int i = 0; i < Y; i++) {
             float vi, vf, t;
 
